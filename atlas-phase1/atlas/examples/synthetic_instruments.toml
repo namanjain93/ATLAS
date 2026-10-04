@@ -1,0 +1,63 @@
+# SYNTHETIC instruments for Phase 1 simulation and tests ONLY.
+# These are NOT real contract specifications. Loaded only when runtime.mode = SIMULATION.
+# Underlyings map onto real correlation clusters so correlation logic can be exercised.
+
+[[instrument]]
+symbol = "SYNTH-EQ"
+exchange = "SYNTH"
+kind = "CASH_EQUITY"
+underlying = "SYNTH-EQ"
+lot_size = 1
+multiplier = "1"
+tick_size = "0.05"
+verified = true
+provenance = "SYNTHETIC"
+source = "synthetic fixture"
+
+[[instrument]]
+symbol = "SYNTH-NIFTY-FUT"
+exchange = "SYNTH"
+kind = "FUTURE"
+underlying = "NIFTY"
+lot_size = 50
+multiplier = "1"
+tick_size = "0.05"
+verified = true
+provenance = "SYNTHETIC"
+source = "synthetic fixture"
+
+[[instrument]]
+symbol = "SYNTH-NIFTY-CE"
+exchange = "SYNTH"
+kind = "LONG_OPTION"
+underlying = "NIFTY"
+lot_size = 50
+multiplier = "1"
+tick_size = "0.05"
+verified = true
+provenance = "SYNTHETIC"
+source = "synthetic fixture"
+
+[[instrument]]
+symbol = "SYNTH-BANKNIFTY-PE"
+exchange = "SYNTH"
+kind = "LONG_OPTION"
+underlying = "BANKNIFTY"
+lot_size = 1
+multiplier = "1"
+tick_size = "0.05"
+verified = true
+provenance = "SYNTHETIC"
+source = "synthetic fixture"
+
+[[instrument]]
+symbol = "SYNTH-GOLD-MINI"
+exchange = "SYNTH"
+kind = "FUTURE"
+underlying = "GOLD"
+lot_size = 1
+multiplier = "1"
+tick_size = "1"
+verified = true
+provenance = "SYNTHETIC"
+source = "synthetic fixture"
