@@ -66,6 +66,12 @@ with `source` and `verified_on`, bump `config_version`, then `atlas config appro
 the Risk Engine vetoes them (`INSTRUMENT_UNVERIFIED`), and any non-synthetic market data is
 vetoed (`DATA_UNVERIFIED`) because no verified data source exists yet.
 
+## Status page (GitHub Pages)
+
+GitHub Pages cannot run Python, so `index.html` is a **static status page** generated from the real
+test/demo output. Rebuild it after code changes with `python scripts/build_site.py`, then commit
+`index.html`. Pages setting: *Deploy from a branch → `main` → `/ (root)`*.
+
 ## Docs
 
 * [Architecture](docs/ARCHITECTURE.md)

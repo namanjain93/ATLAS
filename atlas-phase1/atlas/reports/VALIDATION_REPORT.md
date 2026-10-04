@@ -1,6 +1,6 @@
 # ATLAS Validation Report — Phase 1
 
-Full test suite: `80 passed in 1.35s`
+Full test suite: `80 passed in 1.40s`
 
 Scenario validation is design/integration evidence only. **It is not proof of profitability and not live-market evidence.**
 
