@@ -1,0 +1,46 @@
+"""ATLAS validation-harness registry (skill/references/validation-tests.md).
+
+phase:    the build phase that completes the scenario end-to-end.
+phase1:   what the Phase 1 tests cover — "FULL", "PARTIAL: <what>", or None.
+"""
+
+REGISTRY: dict[str, tuple[str, int, str | None]] = {
+    "T001": ("Valid LONG → trade candidate can pass", 3, "PARTIAL: Risk Engine pass only; no setup/quant/decision gates yet"),
+    "T002": ("Valid SHORT → trade candidate can pass", 3, "PARTIAL: Risk Engine pass only; no setup/quant/decision gates yet"),
+    "T003": ("No setup → NO TRADE", 2, None),
+    "T004": ("Futures exceed risk → reject futures", 4, "PARTIAL: rejection + no fractional lots; alternative-structure search is Phase 4"),
+    "T005": ("Affordable verified option structure → instrument can pass", 4, "PARTIAL: synthetic option spec; no live chain/Greeks/IV yet"),
+    "T006": ("Option pricing unavailable → reject execution", 4, "PARTIAL: unknown/unverified data provenance vetoed"),
+    "T007": ("Execution-critical data stale → reject", 2, "PARTIAL: freshness gate in Risk Engine; DQS is Phase 2"),
+    "T008": ("Conflicting sources → flag and reduce/reject", 2, None),
+    "T009": ("Negative EV → reject", 3, None),
+    "T010": ("Confidence < 70 → reject", 3, None),
+    "T011": ("Daily loss ceiling → block new risk", 1, "FULL"),
+    "T012": ("Third position → reject", 1, "FULL"),
+    "T013": ("Correlated second position → reduce/reject", 1, "FULL"),
+    "T014": ("Partial fill → recalculate exposure", 5, None),
+    "T015": ("Order rejected → reconcile, do not claim fill", 5, None),
+    "T016": ("Thesis invalidation → exit/protect", 6, None),
+    "T017": ("Losing streak → reduce risk", 1, "FULL"),
+    "T018": ("Winning streak → no automatic risk increase", 1, "FULL"),
+    "T019": ("Runtime restart with open position → recover/reconcile", 5, "PARTIAL: state recovery + risk recalculation; venue reconciliation is Phase 5"),
+    "T020": ("Unexpected position → HALT and reconcile", 5, "PARTIAL: unreconcilable position record → HALT; venue polling is Phase 5"),
+    "T021": ("Duplicate order → prevent", 5, None),
+    "T022": ("Duplicate event → deduplicate", 6, "PARTIAL: idempotent candidate/decision events; runtime coalescing is Phase 6"),
+    "T023": ("Stale opportunity → expire", 2, None),
+    "T024": ("Cheap-option trap → reject if risk/EV/structure fails", 4, "PARTIAL: min-lot + worst-case premium gates; EV/Greeks/liquidity checks are Phase 3–4"),
+    "T025": ("Correct underlying, losing option → classify instrument failure", 7, None),
+    "T026": ("Data quality degradation → reduce confidence/restrict", 2, None),
+    "T027": ("Major news shock → event-priority escalation", 6, None),
+    "T028": ("Contradictory analysts → contextual resolution, no voting", 3, None),
+    "T029": ("Probability fabrication attempt → UNKNOWN/reject", 3, None),
+    "T030": ("Hindsight contamination → reject contaminated replay", 10, None),
+    "T031": ("Profit allocation → 30/70 ledger update", 1, "FULL"),
+    "T032": ("Trading loss → capital decreases", 1, "FULL"),
+    "T033": ("Deposit → capital increases but not profit", 1, "FULL"),
+    "T034": ("Reserve isolation → reserve unavailable for trading", 1, "FULL"),
+    "T035": ("Winning trade, bad process → grade E/D", 7, None),
+    "T036": ("Losing trade, good process → grade C", 7, None),
+    "T037": ("Calibration deterioration → research/watch", 7, None),
+    "T038": ("Strategy degradation → suspend/research", 7, None),
+}

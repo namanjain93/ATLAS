@@ -1,0 +1,18 @@
+# ATLAS Constitution — hard ceilings and non-negotiables.
+# The operating config (atlas.toml) may be MORE conservative, never less.
+# Any change here requires a version bump AND `atlas config approve`.
+
+[constitution]
+version = "1.0.0"
+
+[ceilings]
+max_risk_per_trade_pct = "0.02"     # 2% of current trading capital
+max_daily_loss_pct = "0.05"         # 5% of day-open trading capital
+max_concurrent_positions = 2
+reserve_share_of_net_profit = "0.30" # exactly 30% of net realized profit → reserve
+
+[non_negotiables]
+user_approval_required = true
+live_execution_allowed = false
+size_increase_after_loss_allowed = false
+stop_widening_allowed = false

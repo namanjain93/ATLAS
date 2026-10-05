@@ -1,0 +1,17 @@
+{
+  "timestamp": "ISO-8601",
+  "trading_capital": 5000,
+  "reserve": 0,
+  "normal_risk_percent": 0.02,
+  "normal_daily_loss_percent": 0.05,
+  "current_risk_percent": 0.02,
+  "daily_loss": 0,
+  "drawdown_percent": 0,
+  "peak_capital": 5000,
+  "consecutive_losses": 0,
+  "open_positions": 0,
+  "correlation_exposure": [],
+  "risk_mode": "NORMAL",
+  "kill_switch": false,
+  "risk_engine_status": "READY"
+}

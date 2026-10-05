@@ -1,0 +1,27 @@
+{
+  "timestamp": "ISO-8601",
+  "data_snapshot_id": "",
+  "dqs": null,
+  "trend": {
+    "5m": "",
+    "15m": "",
+    "1h": "",
+    "4h": "",
+    "daily": ""
+  },
+  "structure": "",
+  "momentum": "",
+  "volatility": "",
+  "liquidity": "",
+  "breadth": "",
+  "derivatives": "",
+  "cross_asset": {},
+  "macro": {},
+  "news": [],
+  "regime": "",
+  "regime_confidence": null,
+  "state": "",
+  "transition": "",
+  "key_levels": [],
+  "risk_environment": ""
+}

@@ -1,0 +1,66 @@
+# ATLAS operating configuration. Versioned: changing any value requires bumping
+# config_version and running `atlas config approve --reason "..."`.
+# Values are validated against config/constitution.toml at load time.
+
+config_version = "1.0.0"
+
+[capital]
+initial_trading_capital = "5000.00"
+currency = "INR"
+
+[risk]
+risk_per_trade_pct = "0.02"
+daily_loss_pct = "0.05"
+max_concurrent_positions = 2
+
+[risk.drawdown]          # drawdown of trading capital from its peak
+reduced_at = "0.05"
+defensive_at = "0.08"
+very_defensive_at = "0.12"
+paused_at = "0.15"
+
+[risk.losing_streak]
+reduced_at = 3
+defensive_at = 5
+
+[risk.mode_multipliers]  # applied to risk_per_trade_pct. Must be ≤ 1 and non-increasing.
+NORMAL = "1.00"
+REDUCED = "0.75"
+DEFENSIVE = "0.50"
+VERY_DEFENSIVE = "0.25"
+PAUSED = "0.00"
+
+[risk.correlation]
+# Positions whose underlyings share a cluster share ONE risk budget:
+# cluster_risk_multiple × per-trade budget (≤ 1.0 → a correlated 2nd position is reduced/rejected).
+cluster_risk_multiple = "1.0"
+[risk.correlation.clusters]
+INDIA_EQUITY_INDEX = ["NIFTY", "BANKNIFTY", "FINNIFTY", "SENSEX"]
+PRECIOUS_METALS = ["GOLD", "SILVER"]
+ENERGY = ["CRUDEOIL"]
+
+[risk.options]
+# Long premium can gap to zero. Worst-case loss (full premium + fixed costs) must be
+# ≤ this multiple of the per-trade budget.
+worst_case_loss_multiple = "1.0"
+
+[profit_allocation]
+reserve_share = "0.30"
+
+[data]
+max_age_seconds_intraday = 60
+max_age_seconds_swing = 86400
+max_future_skew_seconds = 5
+allow_synthetic = true          # honoured ONLY when runtime.mode = SIMULATION
+
+[runtime]
+mode = "SIMULATION"             # SIMULATION | PAPER
+timezone_offset_minutes = 330   # IST (UTC+05:30, no DST)
+
+[execution]
+adapter = "NONE"                # Phase 1: no execution adapter exists
+user_approval_required = true
+
+[instruments]
+files = ["config/instruments.toml"]
+synthetic_files = ["examples/synthetic_instruments.toml"]
